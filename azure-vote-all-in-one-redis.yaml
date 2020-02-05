@@ -48,7 +48,7 @@ spec:
         "beta.kubernetes.io/os": linux
       containers:
       - name: azure-vote-front
-        image: acr2020jan.azurecr.io/alex1demo:v03 
+        image: acr2020jan.azurecr.io/alex1demo:v04 
         ports:
         - containerPort: 80
         resources:
@@ -57,8 +57,12 @@ spec:
           limits:
             cpu: 500m
         env:
+        - name: BUILD_NUMBER
+          value: "v04"
         - name: REDIS
           value: "azure-vote-back"
+        - name: DEMO_FAREWELL
+          value: "Such a sweet sorrow"
 ---
 apiVersion: v1
 kind: Service
