@@ -354,7 +354,13 @@ $subpart1 = $txt01.ToString() + "," + $txt02.ToString() + "," + $txt03.ToString(
 $txt07 = CellValue -cellvalue $stats.nextFiscalYearEnd.fmt 
 $txt08 = CellValue -cellvalue $calendar.earnings.earningsDate[0].fmt  
 $txt09 = CellValue -cellvalue $calendar.exDividendDate.fmt 
-$txt10 = CellValue -cellvalue $qs.price.shortName 
+$txt10 = "???" 
+try {
+	$txt10 = $qs.price.shortName.Replace(","," ") 
+}
+catch {
+
+}
 $subpart2 = $txt07 + "," + $txt08 + "," + $txt09 + "," + $txt10   
 
 return $subpart1 + "," + $subpart2  
@@ -418,16 +424,18 @@ function ProcessTickersList($tickerlist,$outputFolder) {
    $dateTimeForName = Get-Date -format "yyyy-MM-dd_HH-mm-ss"; 
    $outFilePath = $outputFolder + "\ProcessTickersList_" + $dateTimeForName + ".csv"
    $outputLines = HeaderRowProcessing 
+   Set-Content -Path $outFilePath -Value $outputLines
    $arrayTickers = $tickerlist.Split(",") 
    foreach ($ticker in $arrayTickers) {
      Write-Host "[$($ticker.Trim())]"  
 	 if ($ticker.Trim().Length -gt 0) { 
 	     $stockRow = TickerRow($ticker.Trim())
 		 Write-Host($stockRow)
+		 Add-Content -Path $outFilePath -Value "`n" + $stockRow
 	     $outputLines += "`n" + $stockRow
 	   }
-     } 
-    Set-Content -Path $outFilePath -Value $outputLines   
+     }
+	 return $outputLines 
 }
 
     ProcessTickersList -tickerlist $tickerlist -outputFolder "C:\temp"
