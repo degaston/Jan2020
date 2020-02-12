@@ -379,6 +379,12 @@ function HeaderRowProcessing {
 function QuoteRowProcessing($ticker, $objAnalysis, $objStatistics) {
 
    Write-Host "QuoteRowProcessing ' $ticker' "
+   $qs = $null 
+   $stats = $null 
+   $calendar = $null 
+   $nextYear = $null 
+   $currentYear = $null 
+
    $qs = $objAnalysis.QuoteSummaryStore  
    $stats = $objStatistics.QuoteSummaryStore.defaultKeyStatistics   
    $calendar = $objStatistics.QuoteSummaryStore.calendarEvents 
@@ -399,6 +405,9 @@ function QuoteRowProcessing($ticker, $objAnalysis, $objStatistics) {
  
 function TickerRow($ticker) { 
     Write-Host "TickerRow '$ticker'"
+   $objAnalysis = $null 
+   $objStatistics = $null 
+
 	$objAnalysis = YahooQuoteWebData -ticker $ticker -webMethod "analysis"   
 	$objStatistics = YahooQuoteWebData -ticker $ticker -webMethod "key-statistics" 
 	$tickerRow = QuoteRowProcessing -ticker $ticker -objAnalysis $objAnalysis -objStatistics $objStatistics 
