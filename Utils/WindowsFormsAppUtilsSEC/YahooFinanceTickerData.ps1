@@ -12,7 +12,7 @@ $sublist09="SPLK,SNPS,TTWO,TCOM,ULTA,UAL,VRSN"
 $sublist10="VRSK,VRTX,WBA,WDAY,WDC,WLTW,XEL,XLNX" 
 $sublist11="ADP,BKNG,TMUS,FISV,MDLZ,QCOM,LULU,MAR,MXIM,MELI,MCHP,MU,MNST" 
 $sublist12="SBUX,TXN,CHTR,AVGO,COST,CDW,CERN,CHKP,CTAS,NTAP,NTES,NXPI,SWKS" 
-$sublist13="ATVI,AAL,ALGN,AMGN,ADI,ANSS,ILMN,INCY,ISRG,JD,KHC,KLAC,LRCX,LBTYA," 
+$sublist13="ATVI,AAL,ALGN,AMGN,ADI,ANSS,ILMN,INCY,ISRG,JD,KHC,KLAC,LRCX,LBTYA" 
 $sublist14="AMAT,ASML,ADSK,BIDU,BIIB,BMRN,CDNS,FAST,FOX,GILD,IDXX,ROST,SGEN,SIRI" 
 $sublist15="CTXS,CTSH,CPRT,CSGP,CSX,DLTR,EBAY,EA,EXC,EXPE,ORLY,PCAR,PAYX,REGN" 
 
@@ -50,7 +50,14 @@ function YearEarningTrend($quoteSummaryObject,$period)
 function CellValue($cellvalue) {
 	$result = "###" 
 	try {
-	   $result = $cellvalue 
+	   if ($cellvalue -eq $null) 
+	   {
+	   	   $result = "NNN"
+	   }
+	   else 
+	   {
+			$result = $cellvalue
+			}
 	}
 	catch {
 	   $result = "???" 
@@ -415,6 +422,9 @@ function ProcessTickersList($tickerlist,$outputFolder) {
 }
 
     ProcessTickersList -tickerlist $tickerlist -outputFolder "C:\temp"
+    #ProcessTickersList -tickerlist $sublist14 -outputFolder "C:\temp"
+
+	#$sublist01
 
 
 
