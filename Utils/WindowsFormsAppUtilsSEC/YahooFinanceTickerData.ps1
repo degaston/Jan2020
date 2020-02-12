@@ -1,26 +1,25 @@
 ﻿# list of tickers goes here - use these 15 vars 
 
-$sublist01="AAPL,MSFT,AMZN,GOOGL,FB,BABA,V,MA"
-#$sublist01="AAPL,MSFT"
-$sublist02="BRK-A,JNJ,WMT,PG" 
+$sublist01="AAPL,MSFT,AMZN,GOOGL,FB,BABA,V,MA" 
+$sublist02="BRK-A,JNJ,WMT,PG,JPM,BAC,WFC,C" 
 $sublist03="XOM,RDS-A,KO,HD,TSLA,CRM" 
 $sublist04="NFLX,NVDA,ADBE,NKE,PYPL,PEP" 
 $sublist05="ABT,SAP,DIS,TSM,MRK,MDT" 
 $sublist06="T,TM,HSBC,CHL,MCD,BA" 
 $sublist07="CVX,CMCSA,PFE,VZ,BMY" 
-$sublist08="INTC,NVS,UNH" 
-$sublist09="ORCL,CSCO" 
-$sublist10="JPM,BAC,WFC,C" 
-$sublist11="" 
-$sublist12="" 
-$sublist13="" 
-$sublist14="" 
-$sublist15="" 
+$sublist08="INTC,NVS,UNH,ORCL,CSCO" 
+$sublist09="SPLK,SNPS,TTWO,TCOM,ULTA,UAL,VRSN" 
+$sublist10="VRSK,VRTX,WBA,WDAY,WDC,WLTW,XEL,XLNX" 
+$sublist11="ADP,BKNG,TMUS,FISV,MDLZ,QCOM,LULU,MAR,MXIM,MELI,MCHP,MU,MNST" 
+$sublist12="SBUX,TXN,CHTR,AVGO,COST,CDW,CERN,CHKP,CTAS,NTAP,NTES,NXPI,SWKS" 
+$sublist13="ATVI,AAL,ALGN,AMGN,ADI,ANSS,ILMN,INCY,ISRG,JD,KHC,KLAC,LRCX,LBTYA," 
+$sublist14="AMAT,ASML,ADSK,BIDU,BIIB,BMRN,CDNS,FAST,FOX,GILD,IDXX,ROST,SGEN,SIRI" 
+$sublist15="CTXS,CTSH,CPRT,CSGP,CSX,DLTR,EBAY,EA,EXC,EXPE,ORLY,PCAR,PAYX,REGN" 
 
 $group1 = $sublist01 + "," + $sublist02 + "," + $sublist03 + "," + $sublist04 + "," + $sublist05  
 $group2 = $sublist06 + "," + $sublist07 + "," + $sublist08 + "," + $sublist09 + "," + $sublist10 
-#$group3 = $sublist11 + "," + $sublist12 + "," + $sublist13 + "," + $sublist14 + "," + $sublist15 
-$tickerlist = $group1 + "," + $group2 #+ "," + $group3 
+$group3 = $sublist11 + "," + $sublist12 + "," + $sublist13 + "," + $sublist14 + "," + $sublist15 
+$tickerlist = $group1 + "," + $group2 + "," + $group3 
 
 
 
@@ -48,6 +47,18 @@ function YearEarningTrend($quoteSummaryObject,$period)
   return $result 
 }
 
+function CellValue($cellvalue) {
+	$result = "###" 
+	try {
+	   $result = $cellvalue 
+	}
+	catch {
+	   $result = "???" 
+	}
+	return $result 
+}
+
+
 function HeaderRowPart02 {
 
 $txt01 = "RegularMarketPrice" 
@@ -56,7 +67,7 @@ $txt03 = "RegularMarketChangePercent"
 $txt04 = "marketCap"  
 $txt05 = "forwardPE"  
 $txt06 = "trailingPE" 
-$subpart1 = $txt01.ToString() + "," + $txt02.ToString() + "," + $txt03.ToString() + "," + $txt04.ToString() + "," + $txt05.ToString() + "," + $txt06  
+$subpart1 = $txt01.ToString() + "," + $txt02.ToString() + "," + $txt03.ToString() + "," + $txt04.ToString() + "," + $txt05.ToString() + "," + $txt06.ToString()  
 
 $txt07 = "fiftyDayAverage"  
 $txt08 = "averageDailyVolume10Day"  
@@ -81,28 +92,28 @@ return $subpart1 + "," + $subpart2 + "," + $subpart3
  
 function QuoteRowPart02($qs) {
 
-$txt01 = $qs.price.regularMarketPrice.raw 
-$txt02 = $qs.price.regularMarketVolume.raw 
-$txt03 = $qs.price.regularMarketChangePercent.raw 
-$txt04 = $qs.summaryDetail.marketCap.raw 
-$txt05 = $qs.summaryDetail.forwardPE.raw 
-$txt06 = $qs.summaryDetail.trailingPE.raw 
-$subpart1 = $txt01.ToString() + "," + $txt02.ToString() + "," + $txt03.ToString() + "," + $txt04.ToString() + "," + $txt05.ToString() + "," + $txt06  
+$txt01 = CellValue -cellvalue $qs.price.regularMarketPrice.raw 
+$txt02 = CellValue -cellvalue $qs.price.regularMarketVolume.raw 
+$txt03 = CellValue -cellvalue $qs.price.regularMarketChangePercent.raw 
+$txt04 = CellValue -cellvalue $qs.summaryDetail.marketCap.raw 
+$txt05 = CellValue -cellvalue $qs.summaryDetail.forwardPE.raw 
+$txt06 = CellValue -cellvalue $qs.summaryDetail.trailingPE.raw 
+$subpart1 = $txt01.ToString() + "," + $txt02.ToString() + "," + $txt03.ToString() + "," + $txt04.ToString() + "," + $txt05.ToString() + "," + $txt06.ToString()  
 
-$txt07 = $qs.summaryDetail.fiftyDayAverage.raw 
-$txt08 = $qs.summaryDetail.averageDailyVolume10Day.raw 
-$txt09 = $qs.summaryDetail.twoHundredDayAverage.raw 
-$txt10 = $qs.summaryDetail.dividendYield.raw 
-$txt11 = $qs.summaryDetail.beta.raw 
-$txt12 = $qs.summaryDetail.priceToSalesTrailing12Months.raw  
+$txt07 = CellValue -cellvalue $qs.summaryDetail.fiftyDayAverage.raw 
+$txt08 = CellValue -cellvalue $qs.summaryDetail.averageDailyVolume10Day.raw 
+$txt09 = CellValue -cellvalue $qs.summaryDetail.twoHundredDayAverage.raw 
+$txt10 = CellValue -cellvalue $qs.summaryDetail.dividendYield.raw 
+$txt11 = CellValue -cellvalue $qs.summaryDetail.beta.raw 
+$txt12 = CellValue -cellvalue $qs.summaryDetail.priceToSalesTrailing12Months.raw  
 $subpart2 = $txt07.ToString() + "," + $txt08.ToString() + "," + $txt09.ToString() + "," + $txt10.ToString() + "," + $txt11.ToString() + "," + $txt12.ToString() 
 
-$txt13 = $qs.financialData.returnOnEquity.raw 
-$txt14 = $qs.financialData.debtToEquity.raw 
-$txt15 = $qs.financialData.profitMargins.raw 
-$txt16 = $qs.financialData.grossMargins.raw 
-$txt17 = $qs.financialData.ebitdaMargins.raw 
-$txt18 = $qs.financialData.operatingMargins.raw 
+$txt13 = CellValue -cellvalue $qs.financialData.returnOnEquity.raw 
+$txt14 = CellValue -cellvalue $qs.financialData.debtToEquity.raw 
+$txt15 = CellValue -cellvalue $qs.financialData.profitMargins.raw 
+$txt16 = CellValue -cellvalue $qs.financialData.grossMargins.raw 
+$txt17 = CellValue -cellvalue $qs.financialData.ebitdaMargins.raw 
+$txt18 = CellValue -cellvalue $qs.financialData.operatingMargins.raw 
 $subpart3 = $txt13.ToString() + "," + $txt14.ToString() + "," + $txt15.ToString() + "," + $txt16.ToString() + "," + $txt17.ToString() + "," + $txt18.ToString() 
 
 return $subpart1 + "," + $subpart2 + "," + $subpart3   
@@ -117,7 +128,7 @@ $txt03 = "totalCash"
 $txt04 = "totalDebt" 
 $txt05 = "totalRevenue" 
 $txt06 = "totalCashPerShare" 
-$subpart1 = $txt01.ToString() + "," + $txt02.ToString() + "," + $txt03.ToString() + "," + $txt04.ToString() + "," + $txt05.ToString() + "," + $txt06  
+$subpart1 = $txt01.ToString() + "," + $txt02.ToString() + "," + $txt03.ToString() + "," + $txt04.ToString() + "," + $txt05.ToString() + "," + $txt06.ToString()  
 
 $txt07 = "revenuePerShare" 
 $txt08 = "operatingCashFlow"  
@@ -143,28 +154,28 @@ return $subpart1 + "," + $subpart2 + "," + $subpart3
  
 function QuoteRowPart03($qs) {
 
-$txt01 = $qs.financialData.revenueGrowth.raw 
-$txt02 = $qs.financialData.returnOnAssets.raw
-$txt03 = $qs.financialData.totalCash.raw 
-$txt04 = $qs.financialData.totalDebt.raw 
-$txt05 = $qs.financialData.totalRevenue.raw 
-$txt06 = $qs.financialData.totalCashPerShare.raw 
-$subpart1 = $txt01.ToString() + "," + $txt02.ToString() + "," + $txt03.ToString() + "," + $txt04.ToString() + "," + $txt05.ToString() + "," + $txt06  
+$txt01 = CellValue -cellvalue $qs.financialData.revenueGrowth.raw 
+$txt02 = CellValue -cellvalue $qs.financialData.returnOnAssets.raw
+$txt03 = CellValue -cellvalue $qs.financialData.totalCash.raw 
+$txt04 = CellValue -cellvalue $qs.financialData.totalDebt.raw 
+$txt05 = CellValue -cellvalue $qs.financialData.totalRevenue.raw 
+$txt06 = CellValue -cellvalue $qs.financialData.totalCashPerShare.raw 
+$subpart1 = $txt01.ToString() + "," + $txt02.ToString() + "," + $txt03.ToString() + "," + $txt04.ToString() + "," + $txt05.ToString() + "," + $txt06.ToString()  
 
-$txt07 = $qs.financialData.revenuePerShare.raw 
-$txt08 = $qs.financialData.operatingCashFlow.raw  
-$txt09 = $qs.financialData.ebitda.raw 
-$txt10 = $qs.financialData.freeCashflow.raw
-$txt11 = $qs.financialData.targetMedianPrice.raw 
-$txt12 = $qs.financialData.numberOfAnalystOpinions.raw 
+$txt07 = CellValue -cellvalue $qs.financialData.revenuePerShare.raw 
+$txt08 = CellValue -cellvalue $qs.financialData.operatingCashFlow.raw  
+$txt09 = CellValue -cellvalue $qs.financialData.ebitda.raw 
+$txt10 = CellValue -cellvalue $qs.financialData.freeCashflow.raw
+$txt11 = CellValue -cellvalue $qs.financialData.targetMedianPrice.raw 
+$txt12 = CellValue -cellvalue $qs.financialData.numberOfAnalystOpinions.raw 
 $subpart2 = $txt07.ToString() + "," + $txt08.ToString() + "," + $txt09.ToString() + "," + $txt10.ToString() + "," + $txt11.ToString() + "," + $txt12.ToString() 
 
-$txt13 = $qs.financialData.targetHighPrice.raw  
-$txt14 = $qs.financialData.targetLowPrice.raw 
-$txt15 = $qs.financialData.earningsGrowth.raw 
-$txt16 = $qs.financialData.currentPrice.raw
-$txt17 = $qs.indexTrend.peRatio.raw 
-$txt18 = $qs.indexTrend.pegRatio.raw 
+$txt13 = CellValue -cellvalue $qs.financialData.targetHighPrice.raw  
+$txt14 = CellValue -cellvalue $qs.financialData.targetLowPrice.raw 
+$txt15 = CellValue -cellvalue $qs.financialData.earningsGrowth.raw 
+$txt16 = CellValue -cellvalue $qs.financialData.currentPrice.raw
+$txt17 = CellValue -cellvalue $qs.indexTrend.peRatio.raw 
+$txt18 = CellValue -cellvalue $qs.indexTrend.pegRatio.raw 
 $subpart3 = $txt13.ToString() + "," + $txt14.ToString() + "," + $txt15.ToString() + "," + $txt16.ToString() + "," + $txt17.ToString() + "," + $txt18.ToString() 
 
 return $subpart1 + "," + $subpart2 + "," + $subpart3   
@@ -180,7 +191,7 @@ $txt03 = "currentYear.revenueEstimate.avg"
 $txt04 = "currentYear.revenueEstimate.low"
 $txt05 = "currentYear.revenueEstimate.high"  
 $txt06 = "currentYear.revenueEstimate.yearAgoRevenue"  
-$subpart1 = $txt01.ToString() + "," + $txt02.ToString() + "," + $txt03.ToString() + "," + $txt04.ToString() + "," + $txt05.ToString() + "," + $txt06  
+$subpart1 = $txt01.ToString() + "," + $txt02.ToString() + "," + $txt03.ToString() + "," + $txt04.ToString() + "," + $txt05.ToString() + "," + $txt06.ToString()  
 
 $txt07 = "currentYear.revenueEstimate.numberOfAnalysts"
 $txt08 = "currentYear.earningsEstimate.avg"   
@@ -206,28 +217,28 @@ return $subpart1 + "," + $subpart2 + "," + $subpart3
  
 function QuoteRowPart04($currentYear,$nextYear) {
 
-$txt01 = $currentYear.endDate 
-$txt02 = $currentYear.growth.raw
-$txt03 = $currentYear.revenueEstimate.avg.raw  
-$txt04 = $currentYear.revenueEstimate.low.raw
-$txt05 = $currentYear.revenueEstimate.high.raw  
-$txt06 = $currentYear.revenueEstimate.yearAgoRevenue.raw  
-$subpart1 = $txt01.ToString() + "," + $txt02.ToString() + "," + $txt03.ToString() + "," + $txt04.ToString() + "," + $txt05.ToString() + "," + $txt06  
+$txt01 = CellValue -cellvalue $currentYear.endDate 
+$txt02 = CellValue -cellvalue $currentYear.growth.raw
+$txt03 = CellValue -cellvalue $currentYear.revenueEstimate.avg.raw  
+$txt04 = CellValue -cellvalue $currentYear.revenueEstimate.low.raw
+$txt05 = CellValue -cellvalue $currentYear.revenueEstimate.high.raw  
+$txt06 = CellValue -cellvalue $currentYear.revenueEstimate.yearAgoRevenue.raw  
+$subpart1 = $txt01.ToString() + "," + $txt02.ToString() + "," + $txt03.ToString() + "," + $txt04.ToString() + "," + $txt05.ToString() + "," + $txt06.ToString()  
 
-$txt07 = $currentYear.revenueEstimate.numberOfAnalysts.raw
-$txt08 = $currentYear.earningsEstimate.avg.raw   
-$txt09 = $currentYear.earningsEstimate.low.raw  
-$txt10 = $currentYear.earningsEstimate.high.raw
-$txt11 = $currentYear.earningsEstimate.yearAgoEps.raw  
-$txt12 = $currentYear.earningsEstimate.numberOfAnalysts.raw 
+$txt07 = CellValue -cellvalue $currentYear.revenueEstimate.numberOfAnalysts.raw
+$txt08 = CellValue -cellvalue $currentYear.earningsEstimate.avg.raw   
+$txt09 = CellValue -cellvalue $currentYear.earningsEstimate.low.raw  
+$txt10 = CellValue -cellvalue $currentYear.earningsEstimate.high.raw
+$txt11 = CellValue -cellvalue $currentYear.earningsEstimate.yearAgoEps.raw  
+$txt12 = CellValue -cellvalue $currentYear.earningsEstimate.numberOfAnalysts.raw 
 $subpart2 = $txt07.ToString() + "," + $txt08.ToString() + "," + $txt09.ToString() + "," + $txt10.ToString() + "," + $txt11.ToString() + "," + $txt12.ToString() 
 
-$txt13 = $nextYear.endDate  
-$txt14 = $nextYear.growth.raw 
-$txt15 = $nextYear.revenueEstimate.avg.raw 
-$txt16 = $nextYear.revenueEstimate.low.raw
-$txt17 = $nextYear.revenueEstimate.high.raw 
-$txt18 = $nextYear.revenueEstimate.numberOfAnalysts.raw 
+$txt13 = CellValue -cellvalue $nextYear.endDate  
+$txt14 = CellValue -cellvalue $nextYear.growth.raw 
+$txt15 = CellValue -cellvalue $nextYear.revenueEstimate.avg.raw 
+$txt16 = CellValue -cellvalue $nextYear.revenueEstimate.low.raw
+$txt17 = CellValue -cellvalue $nextYear.revenueEstimate.high.raw 
+$txt18 = CellValue -cellvalue $nextYear.revenueEstimate.numberOfAnalysts.raw 
 $subpart3 = $txt13.ToString() + "," + $txt14.ToString() + "," + $txt15.ToString() + "," + $txt16.ToString() + "," + $txt17.ToString() + "," + $txt18.ToString() 
 
 return $subpart1 + "," + $subpart2 + "," + $subpart3  
@@ -243,7 +254,7 @@ $txt03 = "nextYear.earningsEstimate.high"
 $txt04 = "nextYear.earningsEstimate.numberOfAnalysts"
 $txt05 = "heldPercentInstitutions"  
 $txt06 = "heldPercentInsiders"  
-$subpart1 = $txt01.ToString() + "," + $txt02.ToString() + "," + $txt03.ToString() + "," + $txt04.ToString() + "," + $txt05.ToString() + "," + $txt06  
+$subpart1 = $txt01.ToString() + "," + $txt02.ToString() + "," + $txt03.ToString() + "," + $txt04.ToString() + "," + $txt05.ToString() + "," + $txt06.ToString()  
 
 $txt07 = "sharesOutstanding"
 $txt08 = "sharesShort"   
@@ -272,28 +283,28 @@ function QuoteRowPart05($nextYear,$stats) {
 
 
 
-$txt01 = $nextYear.earningsEstimate.avg.raw 
-$txt02 = $nextYear.earningsEstimate.low.raw
-$txt03 = $nextYear.earningsEstimate.high.raw  
-$txt04 = $nextYear.earningsEstimate.numberOfAnalysts.raw
-$txt05 = $stats.heldPercentInstitutions.raw  
-$txt06 = $stats.heldPercentInsiders.raw  
-$subpart1 = $txt01.ToString() + "," + $txt02.ToString() + "," + $txt03.ToString() + "," + $txt04.ToString() + "," + $txt05.ToString() + "," + $txt06  
+$txt01 = CellValue -cellvalue $nextYear.earningsEstimate.avg.raw 
+$txt02 = CellValue -cellvalue $nextYear.earningsEstimate.low.raw
+$txt03 = CellValue -cellvalue $nextYear.earningsEstimate.high.raw  
+$txt04 = CellValue -cellvalue $nextYear.earningsEstimate.numberOfAnalysts.raw
+$txt05 = CellValue -cellvalue $stats.heldPercentInstitutions.raw  
+$txt06 = CellValue -cellvalue $stats.heldPercentInsiders.raw  
+$subpart1 = $txt01.ToString() + "," + $txt02.ToString() + "," + $txt03.ToString() + "," + $txt04.ToString() + "," + $txt05.ToString() + "," + $txt06.ToString()  
 
-$txt07 = $stats.sharesOutstanding.raw
-$txt08 = $stats.sharesShort.raw   
-$txt09 = $stats.sharesPercentSharesOut.raw 
-$txt10 = $stats.floatShares.raw
-$txt11 = $stats.shortRatio.raw  
-$txt12 = $stats.dateShortInterest.fmt  
+$txt07 = CellValue -cellvalue $stats.sharesOutstanding.raw
+$txt08 = CellValue -cellvalue $stats.sharesShort.raw   
+$txt09 = CellValue -cellvalue $stats.sharesPercentSharesOut.raw 
+$txt10 = CellValue -cellvalue $stats.floatShares.raw
+$txt11 = CellValue -cellvalue $stats.shortRatio.raw  
+$txt12 = CellValue -cellvalue $stats.dateShortInterest.fmt  
 $subpart2 = $txt07.ToString() + "," + $txt08.ToString() + "," + $txt09.ToString() + "," + $txt10.ToString() + "," + $txt11.ToString() + "," + $txt12.ToString() 
   
-$txt13 = $stats.sharesShortPreviousMonthDate.fmt  
-$txt14 = $stats.sharesShortPriorMonth.raw 
-$txt15 = $stats.enterpriseValue.raw 
-$txt16 = $stats.earningsQuarterlyGrowth.raw 
-$txt17 = $stats.bookValue.raw
-$txt18 = $stats.shortPercentOfFloat.raw 
+$txt13 = CellValue -cellvalue $stats.sharesShortPreviousMonthDate.fmt  
+$txt14 = CellValue -cellvalue $stats.sharesShortPriorMonth.raw 
+$txt15 = CellValue -cellvalue $stats.enterpriseValue.raw 
+$txt16 = CellValue -cellvalue $stats.earningsQuarterlyGrowth.raw 
+$txt17 = CellValue -cellvalue $stats.bookValue.raw
+$txt18 = CellValue -cellvalue $stats.shortPercentOfFloat.raw 
 $subpart3 = $txt13.ToString() + "," + $txt14.ToString() + "," + $txt15.ToString() + "," + $txt16.ToString() + "," + $txt17.ToString() + "," + $txt18.ToString() 
 
 return $subpart1 + "," + $subpart2 + "," + $subpart3  
@@ -311,31 +322,33 @@ $txt03 = "lastFiscalYearEnd"
 $txt04 = "netIncomeToCommon"
 $txt05 = "trailingEps"   
 $txt06 = "mostRecentQuarter" 
-$subpart1 = $txt01.ToString() + "," + $txt02.ToString() + "," + $txt03.ToString() + "," + $txt04.ToString() + "," + $txt05.ToString() + "," + $txt06  
+$subpart1 = $txt01.ToString() + "," + $txt02.ToString() + "," + $txt03.ToString() + "," + $txt04.ToString() + "," + $txt05.ToString() + "," + $txt06.ToString()  
 
 $txt07 = "nextFiscalYearEnd" 
 $txt08 = "earningsDate"   
 $txt09 = "exDividendDate" 
-$subpart2 = $txt07.ToString() + "," + $txt08.ToString() + "," + $txt09.ToString()   
+$txt10 = "ShortName" 
+$subpart2 = $txt07.ToString() + "," + $txt08.ToString() + "," + $txt09.ToString() + "," + $txt10.ToString()     
 
 return $subpart1 + "," + $subpart2  
  
 }
 
-function QuoteRowPart06($stats,$calendar) {
+function QuoteRowPart06($qs,$stats,$calendar) {
 
-$txt01 = $stats.priceToBook.raw 
-$txt02 = $stats.enterpriseToEbitda.raw
-$txt03 = $stats.lastFiscalYearEnd.fmt  
-$txt04 = $stats.netIncomeToCommon.raw
-$txt05 = $stats.trailingEps.raw   
-$txt06 = $stats.mostRecentQuarter.fmt 
-$subpart1 = $txt01.ToString() + "," + $txt02.ToString() + "," + $txt03.ToString() + "," + $txt04.ToString() + "," + $txt05.ToString() + "," + $txt06  
+$txt01 = CellValue -cellvalue $stats.priceToBook.raw 
+$txt02 = CellValue -cellvalue $stats.enterpriseToEbitda.raw
+$txt03 = CellValue -cellvalue $stats.lastFiscalYearEnd.fmt  
+$txt04 = CellValue -cellvalue $stats.netIncomeToCommon.raw
+$txt05 = CellValue -cellvalue $stats.trailingEps.raw   
+$txt06 = CellValue -cellvalue $stats.mostRecentQuarter.fmt 
+$subpart1 = $txt01.ToString() + "," + $txt02.ToString() + "," + $txt03.ToString() + "," + $txt04.ToString() + "," + $txt05.ToString() + "," + $txt06.ToString()  
 
-$txt07 = $stats.nextFiscalYearEnd.fmt 
-$txt08 = $calendar.earnings.earningsDate[0].fmt  
-$txt09 = $calendar.exDividendDate.fmt 
-$subpart2 = $txt07 + "," + $txt08 + "," + $txt09   
+$txt07 = CellValue -cellvalue $stats.nextFiscalYearEnd.fmt 
+$txt08 = CellValue -cellvalue $calendar.earnings.earningsDate[0].fmt  
+$txt09 = CellValue -cellvalue $calendar.exDividendDate.fmt 
+$txt10 = CellValue -cellvalue $qs.price.shortName 
+$subpart2 = $txt07 + "," + $txt08 + "," + $txt09 + "," + $txt10   
 
 return $subpart1 + "," + $subpart2  
 
@@ -370,7 +383,7 @@ function QuoteRowProcessing($ticker, $objAnalysis, $objStatistics) {
    $txt03 = QuoteRowPart03 -qs $qs 
    $txt04 = QuoteRowPart04 -currentYear $currentYear -nextYear $nextYear
    $txt05 = QuoteRowPart05 -stats $stats -nextYear $nextYear 
-   $txt06 = QuoteRowPart06 -stats $stats -calendar $calendar 
+   $txt06 = QuoteRowPart06 -qs $qs -stats $stats -calendar $calendar 
    Write-Host "QuoteRowProcessing OBJECTS properties set for output"
    
 
