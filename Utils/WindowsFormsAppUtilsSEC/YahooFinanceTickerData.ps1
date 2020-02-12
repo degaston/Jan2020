@@ -1,15 +1,15 @@
 ﻿# list of tickers goes here - use these 15 vars 
 
 $sublist01="AAPL,MSFT,AMZN,GOOGL,FB,BABA,V,MA" 
-$sublist02="BRK-A,JNJ,WMT,PG,JPM,BAC,WFC,C" 
-$sublist03="XOM,RDS-A,KO,HD,TSLA,CRM" 
-$sublist04="NFLX,NVDA,ADBE,NKE,PYPL,PEP" 
-$sublist05="ABT,SAP,DIS,TSM,MRK,MDT" 
-$sublist06="T,TM,HSBC,CHL,MCD,BA" 
-$sublist07="CVX,CMCSA,PFE,VZ,BMY" 
-$sublist08="INTC,NVS,UNH,ORCL,CSCO" 
-$sublist09="SPLK,SNPS,TTWO,TCOM,ULTA,UAL,VRSN" 
-$sublist10="VRSK,VRTX,WBA,WDAY,WDC,WLTW,XEL,XLNX" 
+$sublist02="BRK-A,JNJ,WMT,PG,JPM,BAC,WFC,C,ANTM,MS,D" 
+$sublist03="XOM,RDS-A,KO,HD,TSLA,CRM,CI,USB,GS,PNC,SPGI" 
+$sublist04="NFLX,NVDA,ADBE,NKE,PYPL,PEP,AXP,CAT,CB" 
+$sublist05="ABT,SAP,DIS,TSM,MRK,MDT,LMT,DHR,CVS,BDX,SYK,DUK" 
+$sublist06="T,TM,HSBC,CHL,MCD,BA,CCL,ACN,UNP,UPS,MU,CSX,SCHW,NSC" 
+$sublist07="CVX,CMCSA,PFE,VZ,BMY,PM,MO,HON,LLY,BLK,CCI,AGN,ECL" 
+$sublist08="INTC,NVS,UNH,ORCL,CSCO,AMT,GE,IBM,CME,TJX,NOC,TGT,BSX,AEP,EQIX" 
+$sublist09="SPLK,SNPS,TTWO,TCOM,ULTA,UAL,VRSN,INTU,CL,NOW,COP,RTN" 
+$sublist10="VRSK,VRTX,WBA,WDAY,WDC,WLTW,XEL,XLNX,AMD,MMC,AON,DE,ICE" 
 $sublist11="ADP,BKNG,TMUS,FISV,MDLZ,QCOM,LULU,MAR,MXIM,MELI,MCHP,MU,MNST" 
 $sublist12="SBUX,TXN,CHTR,AVGO,COST,CDW,CERN,CHKP,CTAS,NTAP,NTES,NXPI,SWKS" 
 $sublist13="ATVI,AAL,ALGN,AMGN,ADI,ANSS,ILMN,INCY,ISRG,JD,KHC,KLAC,LRCX,LBTYA" 
@@ -438,7 +438,7 @@ function ProcessTickersList($tickerlist,$outputFolder) {
 	 return $outputLines 
 }
 
-    ProcessTickersList -tickerlist $tickerlist -outputFolder "C:\temp"
+    #ProcessTickersList -tickerlist $tickerlist -outputFolder "C:\temp"
     #ProcessTickersList -tickerlist $sublist14 -outputFolder "C:\temp"
 
 	#$sublist01
