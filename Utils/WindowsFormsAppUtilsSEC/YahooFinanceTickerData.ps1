@@ -24,6 +24,26 @@ $tickerlist = $group1 + "," + $group2 + "," + $group3
 
 
 
+$qq1 = "AAPL,XEL,BKNG,ASML,PYPL,KLAC,WBA,TCOM,CSCO,PAYX,CSX,DLTR,SBUX,CSGP,REGN,EXPE,INTC,WDAY,MU,ALGN" 
+$qq2 = "MSFT,KHC,INTU,XLNX,COST,PCAR,ATVI,ULTA,PEP,LULU,BIIB,WDC,QCOM,IDXX,CTSH,NTAP,CHTR,CERN,ADI,CTXS" 
+$qq3 = "AMZN,MELI,ADP,ALXN,AMGN,MCHP,ADSK,MXIM,CMCSA,CTAS,AMD,UAL,GILD,ANSS,NXPI,FOXA,NFLX,WLTW,LRCX,CHKP" 
+$qq4 = "GOOGL,EA,ISRG,FAST,AVGO,NTES,ILMN,INCY,ADBE,EBAY,AMAT,SWKS,MDLZ,VRSN,JD,AAL,VRSK,EXC,CDW,TMUS" 
+$qq5 = "FB,SIRI,VRTX,CDNS,TXN,SPLK,ROST,BMRN,NVDA,ORLY,MAR,SGEN,FISV,SNPS,MNST,TTWO,TSLA,CPRT,BIDU,LBTYK" 
+
+$tickerlist = $qq1 + "," +  $qq2 + "," +  $qq3 + "," +  $qq4 + "," +  $qq5 
+
+
+$sps1 = "SBAC,KMB,WAT,V,VIAC,MAR,AMD,ADP,TDG,ROK,CMG,HCA,ADSK,COST,ZTS,ORLY,EQIX,ILMN,MA,AAPL" 
+$sps2 = "LYV,CLX,BA,EQR,APA,ALLE,NVDA,LLY,IDXX,HSY,AZO,ECL,NOW,IT,JKHY,ULTA,MKTX,MSFT,CPRT,EXR" 
+$sps3 = "AIV,DRE,MCO,HES,BKR,EL,INTU,MAA,ROL,NKE,HLT,KO,CCI,CTAS,CRM,PLD,AMZN,PAYX,SBUX,AON" 
+$sps4 = "NLOK,LW,DLR,ESS,PEAK,FTNT,YUM,ROST,NFLX,ALGN,VRSK,PSA,PAYC,ISRG,SPGI,TXN,ANSS,PEP,MTD,CTXS" 
+$sps5 = "UDR,MSI,HD,FAST,AMT,CDNS,MCD,PM,TFC,MNST,ADBE,PYPL,MSCI,ITW,RMD,LOW,VRSN,EW,CL,TJX" 
+
+$tickerlist = $sps1 + "," +  $sps2 + "," +  $sps3 + "," +  $sps4 + "," +  $sps5 
+
+
+
+
 function YahooQuoteWebData($ticker,$webMethod) { 
   $urlService = "https://finance.yahoo.com/quote/" + $ticker + "/" + $webMethod # "analysis" "key-statistics"   
   Write-Host $urlService 
@@ -431,7 +451,7 @@ function ProcessTickersList($tickerlist,$outputFolder) {
 	 if ($ticker.Trim().Length -gt 0) { 
 	     $stockRow = TickerRow($ticker.Trim())
 		 Write-Host($stockRow)
-		 Add-Content -Path $outFilePath -Value "`n" + $stockRow
+		 Add-Content -Path $outFilePath -Value $("`n" + $stockRow) 
 	     $outputLines += "`n" + $stockRow
 	   }
      }
@@ -439,12 +459,25 @@ function ProcessTickersList($tickerlist,$outputFolder) {
 }
 
     #ProcessTickersList -tickerlist $tickerlist -outputFolder "C:\temp"
-    #ProcessTickersList -tickerlist $sublist14 -outputFolder "C:\temp"
+    ProcessTickersList -tickerlist $sublist03 -outputFolder "C:\temp"
 
 	#$sublist01
 
 
+	function Runbook20200213a()
+	{
+		$url = https://finance.yahoo.com/portfolio/p_3/view/view_4"
+		$urlService = $url 
+		$Response = Invoke-WebRequest -Uri $urlService 
+		$tmpPageHtmlContent = $Response.Content
+		$startPositionJson = $tmpPageHtmlContent.IndexOf("root.App.main = {")+"root.App.main = {".Length - 1 
+		$endPositionJson = $tmpPageHtmlContent.LastIndexOf("}};") + 3   
+		$tmpJsonObject = $tmpPageHtmlContent.Substring($startPositionJson, $endPositionJson - $startPositionJson - 1).Replace("BONDS","_BONDS") 
+		$objYahooData = $tmpJsonObject | ConvertFrom-JSON 
+		$stores = $objYahooData.context.dispatcher.stores  
+ 
 
+	}
 	
 
 
