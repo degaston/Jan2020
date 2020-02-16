@@ -451,15 +451,16 @@ function ProcessTickersList($tickerlist,$outputFolder) {
 	 if ($ticker.Trim().Length -gt 0) { 
 	     $stockRow = TickerRow($ticker.Trim())
 		 Write-Host($stockRow)
-		 Add-Content -Path $outFilePath -Value $("`n" + $stockRow) 
-	     $outputLines += "`n" + $stockRow
+		 #Add-Content -Path $outFilePath -Value $("`n" + $stockRow) 
+		 Add-Content -Path $outFilePath -Value $stockRow 
+	     $outputLines += $stockRow #"`n" + 
 	   }
      }
 	 return $outputLines 
 }
 
-    #ProcessTickersList -tickerlist $tickerlist -outputFolder "C:\temp"
-    ProcessTickersList -tickerlist $sublist03 -outputFolder "C:\temp"
+    ProcessTickersList -tickerlist $tickerlist -outputFolder "C:\temp"
+    #ProcessTickersList -tickerlist $sublist03 -outputFolder "C:\temp"
 
 	#$sublist01
 
