@@ -50,8 +50,8 @@ $sp500e = "UDR,TGT,AVB,FDX,MSI,PGR,FLT,VLO,HD,ATO,VAR,WDC,FAST,QRVO,FLIR,BEN,ABB
 
 $tickerlist = $sp500a + "," +  $sp500b + "," +  $sp500c + "," +  $sp500d + "," +  $sp500e 
 
-$tickerlist = "AAPL,MSFT,GOOGL,AMZN,FB,BABA"
-$tickerlist = "AAPL,MSFT"
+#$tickerlist = "AAPL,MSFT,GOOGL,AMZN,FB,BABA"
+#$tickerlist = "AAPL,MSFT"
 
 
 
@@ -365,8 +365,9 @@ $subpart1 = $txt01.ToString() + "," + $txt02.ToString() + "," + $txt03.ToString(
 $txt07 = "nextFiscalYearEnd" 
 $txt08 = "earningsDate"   
 $txt09 = "exDividendDate" 
-$txt10 = "ShortName" 
-$subpart2 = $txt07.ToString() + "," + $txt08.ToString() + "," + $txt09.ToString() + "," + $txt10.ToString()     
+$txt10 = "ShortName"  
+$txt11 = "averageDailyVolume3Month" 
+$subpart2 = $txt07.ToString() + "," + $txt08.ToString() + "," + $txt09.ToString() + "," + $txt10.ToString() + "," + $txt11.ToString()      
 
 return $subpart1 + "," + $subpart2  
  
@@ -390,9 +391,14 @@ try {
 	$txt10 = $qs.price.shortName.Replace(","," ") 
 }
 catch {
+# $txt08 = CellValue -cellvalue $qs.summaryDetail.averageDailyVolume10Day.raw 
+$txt11 = CellValue -cellvalue $qs.price.averageDailyVolume3Month.raw 
 
 }
-$subpart2 = $txt07 + "," + $txt08 + "," + $txt09 + "," + $txt10   
+$subpart2 = $txt07.ToString() + "," + $txt08.ToString() + "," + $txt09.ToString() + "," + $txt10.ToString() + "," + $txt11.ToString()      
+  
+
+
 
 return $subpart1 + "," + $subpart2  
 
