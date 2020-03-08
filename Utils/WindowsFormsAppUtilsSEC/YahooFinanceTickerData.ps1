@@ -98,7 +98,6 @@ function CellValue($cellvalue) {
 
 
 function HeaderRowPart02 {
-
 $txt01 = "RegularMarketPrice" 
 $txt02 = "regularMarketVolume"
 $txt03 = "RegularMarketChangePercent" 
@@ -106,7 +105,6 @@ $txt04 = "marketCap"
 $txt05 = "forwardPE"  
 $txt06 = "trailingPE" 
 $subpart1 = $txt01.ToString() + "," + $txt02.ToString() + "," + $txt03.ToString() + "," + $txt04.ToString() + "," + $txt05.ToString() + "," + $txt06.ToString()  
-
 $txt07 = "fiftyDayAverage"  
 $txt08 = "averageDailyVolume10Day"  
 $txt09 = "twoHundredDayAverage"  
@@ -114,7 +112,6 @@ $txt10 = "dividendYield"
 $txt11 = "beta"  
 $txt12 = "priceToSalesTrailing12Months"  
 $subpart2 = $txt07.ToString() + "," + $txt08.ToString() + "," + $txt09.ToString() + "," + $txt10.ToString() + "," + $txt11.ToString() + "," + $txt12.ToString() 
-
 $txt13 = "returnOnEquity"  
 $txt14 = "debtToEquity" 
 $txt15 = "profitMargins"  
@@ -122,10 +119,101 @@ $txt16 = "grossMargins"
 $txt17 = "ebitdaMargins" 
 $txt18 = "operatingMargins" 
 $subpart3 = $txt13.ToString() + "," + $txt14.ToString() + "," + $txt15.ToString() + "," + $txt16.ToString() + "," + $txt17.ToString() + "," + $txt18.ToString() 
-
 return $subpart1 + "," + $subpart2 + "," + $subpart3  
-
 }
+
+function HeaderRowPart03 {
+$txt01 = "revenueGrowth" 
+$txt02 = "returnOnAssets"
+$txt03 = "totalCash" 
+$txt04 = "totalDebt" 
+$txt05 = "totalRevenue" 
+$txt06 = "totalCashPerShare" 
+$subpart1 = $txt01.ToString() + "," + $txt02.ToString() + "," + $txt03.ToString() + "," + $txt04.ToString() + "," + $txt05.ToString() + "," + $txt06.ToString()  
+$txt07 = "revenuePerShare" 
+$txt08 = "operatingCashFlow"  
+$txt09 = "ebitda" 
+$txt10 = "freeCashflow"
+$txt11 = "targetMedianPrice" 
+$txt12 = "numberOfAnalystOpinions" 
+$subpart2 = $txt07.ToString() + "," + $txt08.ToString() + "," + $txt09.ToString() + "," + $txt10.ToString() + "," + $txt11.ToString() + "," + $txt12.ToString() 
+$txt13 = "targetHighPrice"  
+$txt14 = "targetLowPrice" 
+$txt15 = "earningsGrowth" 
+$txt16 = "currentPrice"
+$txt17 = "peRatio"
+$txt18 = "pegRatio" 
+$subpart3 = $txt13.ToString() + "," + $txt14.ToString() + "," + $txt15.ToString() + "," + $txt16.ToString() + "," + $txt17.ToString() + "," + $txt18.ToString() 
+return $subpart1 + "," + $subpart2 + "," + $subpart3   
+} 
+
+function HeaderRowPart04 {
+$txt01 = "currentYear.endDate" 
+$txt02 = "currentYear.growth"
+$txt03 = "currentYear.revenueEstimate.avg"  
+$txt04 = "currentYear.revenueEstimate.low"
+$txt05 = "currentYear.revenueEstimate.high"  
+$txt06 = "currentYear.revenueEstimate.yearAgoRevenue"  
+$subpart1 = $txt01.ToString() + "," + $txt02.ToString() + "," + $txt03.ToString() + "," + $txt04.ToString() + "," + $txt05.ToString() + "," + $txt06.ToString()  
+$txt07 = "currentYear.revenueEstimate.numberOfAnalysts"
+$txt08 = "currentYear.earningsEstimate.avg"   
+$txt09 = "currentYear.earningsEstimate.low"  
+$txt10 = "currentYear.earningsEstimate.high"
+$txt11 = "currentYear.earningsEstimate.yearAgoEps"  
+$txt12 = "currentYear.earningsEstimate.numberOfAnalysts" 
+$subpart2 = $txt07.ToString() + "," + $txt08.ToString() + "," + $txt09.ToString() + "," + $txt10.ToString() + "," + $txt11.ToString() + "," + $txt12.ToString() 
+$txt13 = "nextYear.endDate"  
+$txt14 = "nextYear.growth" 
+$txt15 = "nextYear.revenueEstimate.avg" 
+$txt16 = "nextYear.revenueEstimate.low"
+$txt17 = "nextYear.revenueEstimate.high" 
+$txt18 = "nextYear.revenueEstimate.numberOfAnalysts" 
+$subpart3 = $txt13.ToString() + "," + $txt14.ToString() + "," + $txt15.ToString() + "," + $txt16.ToString() + "," + $txt17.ToString() + "," + $txt18.ToString() 
+return $subpart1 + "," + $subpart2 + "," + $subpart3  
+}
+
+function HeaderRowPart05 {
+$txt01 = "nextYear.earningsEstimate.avg" 
+$txt02 = "nextYear.earningsEstimate.low"
+$txt03 = "nextYear.earningsEstimate.high"  
+$txt04 = "nextYear.earningsEstimate.numberOfAnalysts"
+$txt05 = "heldPercentInstitutions"  
+$txt06 = "heldPercentInsiders"  
+$subpart1 = $txt01.ToString() + "," + $txt02.ToString() + "," + $txt03.ToString() + "," + $txt04.ToString() + "," + $txt05.ToString() + "," + $txt06.ToString()  
+$txt07 = "sharesOutstanding"
+$txt08 = "sharesShort"   
+$txt09 = "sharesPercentSharesOut" 
+$txt10 = "floatShares"
+$txt11 = "shortRatio"  
+$txt12 = "dateShortInterest"  
+$subpart2 = $txt07.ToString() + "," + $txt08.ToString() + "," + $txt09.ToString() + "," + $txt10.ToString() + "," + $txt11.ToString() + "," + $txt12.ToString() 
+$txt13 = "sharesShortPreviousMonthDate"  
+$txt14 = "sharesShortPriorMonth" 
+$txt15 = "enterpriseValue" 
+$txt16 = "earningsQuarterlyGrowth" 
+$txt17 = "bookValue"
+$txt18 = "shortPercentOfFloat" 
+$subpart3 = $txt13.ToString() + "," + $txt14.ToString() + "," + $txt15.ToString() + "," + $txt16.ToString() + "," + $txt17.ToString() + "," + $txt18.ToString() 
+return $subpart1 + "," + $subpart2 + "," + $subpart3  
+}
+
+function HeaderRowPart06 {
+$txt01 = "priceToBook" 
+$txt02 = "enterpriseToEbitda"
+$txt03 = "lastFiscalYearEnd"  
+$txt04 = "netIncomeToCommon"
+$txt05 = "trailingEps"   
+$txt06 = "mostRecentQuarter" 
+$subpart1 = $txt01.ToString() + "," + $txt02.ToString() + "," + $txt03.ToString() + "," + $txt04.ToString() + "," + $txt05.ToString() + "," + $txt06.ToString()  
+$txt07 = "nextFiscalYearEnd" 
+$txt08 = "earningsDate"   
+$txt09 = "exDividendDate" 
+$txt10 = "ShortName"  
+$txt11 = "averageDailyVolume3Month" 
+$subpart2 = $txt07.ToString() + "," + $txt08.ToString() + "," + $txt09.ToString() + "," + $txt10.ToString() + "," + $txt11.ToString()      
+return $subpart1 + "," + $subpart2  
+}
+
 
  
 function QuoteRowPart02($qs) {
@@ -157,38 +245,6 @@ $subpart3 = $txt13.ToString() + "," + $txt14.ToString() + "," + $txt15.ToString(
 return $subpart1 + "," + $subpart2 + "," + $subpart3   
 
 }
-
-function HeaderRowPart03 {
-
-$txt01 = "revenueGrowth" 
-$txt02 = "returnOnAssets"
-$txt03 = "totalCash" 
-$txt04 = "totalDebt" 
-$txt05 = "totalRevenue" 
-$txt06 = "totalCashPerShare" 
-$subpart1 = $txt01.ToString() + "," + $txt02.ToString() + "," + $txt03.ToString() + "," + $txt04.ToString() + "," + $txt05.ToString() + "," + $txt06.ToString()  
-
-$txt07 = "revenuePerShare" 
-$txt08 = "operatingCashFlow"  
-$txt09 = "ebitda" 
-$txt10 = "freeCashflow"
-$txt11 = "targetMedianPrice" 
-$txt12 = "numberOfAnalystOpinions" 
-$subpart2 = $txt07.ToString() + "," + $txt08.ToString() + "," + $txt09.ToString() + "," + $txt10.ToString() + "," + $txt11.ToString() + "," + $txt12.ToString() 
-
-$txt13 = "targetHighPrice"  
-$txt14 = "targetLowPrice" 
-$txt15 = "earningsGrowth" 
-$txt16 = "currentPrice"
-$txt17 = "peRatio"
-$txt18 = "pegRatio" 
-$subpart3 = $txt13.ToString() + "," + $txt14.ToString() + "," + $txt15.ToString() + "," + $txt16.ToString() + "," + $txt17.ToString() + "," + $txt18.ToString() 
-
-
-return $subpart1 + "," + $subpart2 + "," + $subpart3   
-
-} 
-
  
 function QuoteRowPart03($qs) {
 
@@ -219,39 +275,6 @@ $subpart3 = $txt13.ToString() + "," + $txt14.ToString() + "," + $txt15.ToString(
 return $subpart1 + "," + $subpart2 + "," + $subpart3   
 
 }
-
-
-function HeaderRowPart04 {
-
-$txt01 = "currentYear.endDate" 
-$txt02 = "currentYear.growth"
-$txt03 = "currentYear.revenueEstimate.avg"  
-$txt04 = "currentYear.revenueEstimate.low"
-$txt05 = "currentYear.revenueEstimate.high"  
-$txt06 = "currentYear.revenueEstimate.yearAgoRevenue"  
-$subpart1 = $txt01.ToString() + "," + $txt02.ToString() + "," + $txt03.ToString() + "," + $txt04.ToString() + "," + $txt05.ToString() + "," + $txt06.ToString()  
-
-$txt07 = "currentYear.revenueEstimate.numberOfAnalysts"
-$txt08 = "currentYear.earningsEstimate.avg"   
-$txt09 = "currentYear.earningsEstimate.low"  
-$txt10 = "currentYear.earningsEstimate.high"
-$txt11 = "currentYear.earningsEstimate.yearAgoEps"  
-$txt12 = "currentYear.earningsEstimate.numberOfAnalysts" 
-$subpart2 = $txt07.ToString() + "," + $txt08.ToString() + "," + $txt09.ToString() + "," + $txt10.ToString() + "," + $txt11.ToString() + "," + $txt12.ToString() 
-
-$txt13 = "nextYear.endDate"  
-$txt14 = "nextYear.growth" 
-$txt15 = "nextYear.revenueEstimate.avg" 
-$txt16 = "nextYear.revenueEstimate.low"
-$txt17 = "nextYear.revenueEstimate.high" 
-$txt18 = "nextYear.revenueEstimate.numberOfAnalysts" 
-$subpart3 = $txt13.ToString() + "," + $txt14.ToString() + "," + $txt15.ToString() + "," + $txt16.ToString() + "," + $txt17.ToString() + "," + $txt18.ToString() 
-
-return $subpart1 + "," + $subpart2 + "," + $subpart3  
-
-}
-
-
  
 function QuoteRowPart04($currentYear,$nextYear) {
 
@@ -283,37 +306,6 @@ return $subpart1 + "," + $subpart2 + "," + $subpart3
 
 }
 
-
-function HeaderRowPart05 {
-
-$txt01 = "nextYear.earningsEstimate.avg" 
-$txt02 = "nextYear.earningsEstimate.low"
-$txt03 = "nextYear.earningsEstimate.high"  
-$txt04 = "nextYear.earningsEstimate.numberOfAnalysts"
-$txt05 = "heldPercentInstitutions"  
-$txt06 = "heldPercentInsiders"  
-$subpart1 = $txt01.ToString() + "," + $txt02.ToString() + "," + $txt03.ToString() + "," + $txt04.ToString() + "," + $txt05.ToString() + "," + $txt06.ToString()  
-
-$txt07 = "sharesOutstanding"
-$txt08 = "sharesShort"   
-$txt09 = "sharesPercentSharesOut" 
-$txt10 = "floatShares"
-$txt11 = "shortRatio"  
-$txt12 = "dateShortInterest"  
-$subpart2 = $txt07.ToString() + "," + $txt08.ToString() + "," + $txt09.ToString() + "," + $txt10.ToString() + "," + $txt11.ToString() + "," + $txt12.ToString() 
-  
-$txt13 = "sharesShortPreviousMonthDate"  
-$txt14 = "sharesShortPriorMonth" 
-$txt15 = "enterpriseValue" 
-$txt16 = "earningsQuarterlyGrowth" 
-$txt17 = "bookValue"
-$txt18 = "shortPercentOfFloat" 
-$subpart3 = $txt13.ToString() + "," + $txt14.ToString() + "," + $txt15.ToString() + "," + $txt16.ToString() + "," + $txt17.ToString() + "," + $txt18.ToString() 
-
-return $subpart1 + "," + $subpart2 + "," + $subpart3  
-
- 
-}
 
 
  
@@ -351,28 +343,6 @@ return $subpart1 + "," + $subpart2 + "," + $subpart3
 
 
 
-
-function HeaderRowPart06 {
-
-$txt01 = "priceToBook" 
-$txt02 = "enterpriseToEbitda"
-$txt03 = "lastFiscalYearEnd"  
-$txt04 = "netIncomeToCommon"
-$txt05 = "trailingEps"   
-$txt06 = "mostRecentQuarter" 
-$subpart1 = $txt01.ToString() + "," + $txt02.ToString() + "," + $txt03.ToString() + "," + $txt04.ToString() + "," + $txt05.ToString() + "," + $txt06.ToString()  
-
-$txt07 = "nextFiscalYearEnd" 
-$txt08 = "earningsDate"   
-$txt09 = "exDividendDate" 
-$txt10 = "ShortName"  
-$txt11 = "averageDailyVolume3Month" 
-$subpart2 = $txt07.ToString() + "," + $txt08.ToString() + "," + $txt09.ToString() + "," + $txt10.ToString() + "," + $txt11.ToString()      
-
-return $subpart1 + "," + $subpart2  
- 
-}
-
 function QuoteRowPart06($qs,$stats,$calendar) {
 
 $txt01 = CellValue -cellvalue $stats.priceToBook.raw 
@@ -390,11 +360,10 @@ $txt10 = "???"
 try {
 	$txt10 = $qs.price.shortName.Replace(","," ") 
 }
-catch {
+catch { } 
 # $txt08 = CellValue -cellvalue $qs.summaryDetail.averageDailyVolume10Day.raw 
 $txt11 = CellValue -cellvalue $qs.price.averageDailyVolume3Month.raw 
-
-}
+ 
 $subpart2 = $txt07.ToString() + "," + $txt08.ToString() + "," + $txt09.ToString() + "," + $txt10.ToString() + "," + $txt11.ToString()      
   
 
