@@ -457,19 +457,23 @@ function ProcessTickersList($tickerlist,$outputFolder) {
 
 	function Runbook20200213a()
 	{
-		$url = https://finance.yahoo.com/portfolio/p_3/view/view_4"
-		$urlService = $url 
-		$Response = Invoke-WebRequest -Uri $urlService 
-		$tmpPageHtmlContent = $Response.Content
-		$startPositionJson = $tmpPageHtmlContent.IndexOf("root.App.main = {")+"root.App.main = {".Length - 1 
-		$endPositionJson = $tmpPageHtmlContent.LastIndexOf("}};") + 3   
-		$tmpJsonObject = $tmpPageHtmlContent.Substring($startPositionJson, $endPositionJson - $startPositionJson - 1).Replace("BONDS","_BONDS") 
-		$objYahooData = $tmpJsonObject | ConvertFrom-JSON 
-		$stores = $objYahooData.context.dispatcher.stores  
- 
-
+		#$url = https://finance.yahoo.com/portfolio/p_3/view/view_4"
+		#$urlService = $url 
+		#$Response = Invoke-WebRequest -Uri $urlService 
+		#$tmpPageHtmlContent = $Response.Content
+		#$startPositionJson = $tmpPageHtmlContent.IndexOf("root.App.main = {") + ("root.App.main = {").Length - 1 
+		#$endPositionJson = $tmpPageHtmlContent.LastIndexOf("}};") + 3   
+		#$tmpJsonObject = $tmpPageHtmlContent.Substring($startPositionJson, $endPositionJson - $startPositionJson - 1).Replace("BONDS","_BONDS") 
+		#$objYahooData = $tmpJsonObject | ConvertFrom-JSON 
+		#$stores = $objYahooData.context.dispatcher.stores  
 	}
 	
 
+    $ticker = "GOOGL"
+    $webMethod = "analysis"
 
-
+      $urlService = "https://finance.yahoo.com/quote/" + $ticker + "/" + $webMethod # "analysis" "key-statistics"   
+  Write-Host $urlService 
+  $Response = Invoke-WebRequest -Uri $urlService 
+  
+  
